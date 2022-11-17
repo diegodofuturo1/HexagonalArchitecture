@@ -4,6 +4,7 @@ using Adapters.SqlAdapter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SqlAdapter.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    partial class HotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221117132129_RoomsBookings")]
+    partial class RoomsBookings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,14 +35,8 @@ namespace SqlAdapter.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("GuestId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("PlaceAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<long>("RoomId")
-                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
@@ -49,10 +45,6 @@ namespace SqlAdapter.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GuestId");
-
-                    b.HasIndex("RoomId");
 
                     b.ToTable("Bookings");
                 });
@@ -102,25 +94,6 @@ namespace SqlAdapter.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rooms");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Booking", b =>
-                {
-                    b.HasOne("Domain.Entities.Guest", "Guest")
-                        .WithMany()
-                        .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guest");
-
-                    b.Navigation("Room");
                 });
 #pragma warning restore 612, 618
         }
