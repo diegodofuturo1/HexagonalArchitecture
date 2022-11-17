@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaptaerTests", "BookingSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "BookingService\Consumers\API\API.csproj", "{F972A6F9-9AFD-4F2D-B76F-F7120BA326DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLAdapter", "BookingService\Adapters\SQLAdapter\SQLAdapter.csproj", "{AD46877A-31AD-4F18-A931-8A84B4F08584}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlAdapter", "BookingService\Adapters\SQLAdapter\SqlAdapter.csproj", "{AD46877A-31AD-4F18-A931-8A84B4F08584}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

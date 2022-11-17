@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    internal class Room: Entity
+    public class Room: Entity
     {
         public string? Name { get; set; }
         public int? Level { get; set; }
