@@ -1,5 +1,5 @@
-using Adapters.SqlAdapter;
 using Microsoft.EntityFrameworkCore;
+using SqlAdapter.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
