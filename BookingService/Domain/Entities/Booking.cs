@@ -2,12 +2,12 @@
 
 namespace Domain.Entities
 {
-    internal class Booking: Entity
+    public class Booking: Entity
     {
         public DateTime PlaceAt { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public BookingStatus Status { get; private set; }
+        public BookingStatus Status { get; private set; } = BookingStatus.Created;
 
         public void ChangeStatus(BookingAction action)
         {
