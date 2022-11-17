@@ -7,6 +7,19 @@ namespace Domain.Entities
         public DateTime PlaceAt { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public BookingStatus Status { get; set; }
+        public BookingStatus Status { get; private set; }
+
+        public void ChangeStatus(BookingAction action)
+        {
+            Status = (Status, action) switch
+            {
+                (BookingStatus.Created, BookingAction.Pay) => BookingStatus.Paid,
+                (BookingStatus.Created, BookingAction.Cancel) => BookingStatus.Canceled,
+                (BookingStatus.Paid, BookingAction.Finish) => BookingStatus.Finished,
+                (BookingStatus.Paid, BookingAction.Refound) => BookingStatus.Refounded,
+                (BookingStatus.Canceled, BookingAction.Reopen) => BookingStatus.Created,
+                _ => Status
+            };
+        }
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Emuns
 {
-    internal enum BookingStatus
+    internal enum BookingAction
     {
-        Created = 0, Paid = 1, Unpaid = 2, Finished = 3, Canceled = 4, Refounded = 5
+        Pay = 0, Finish = 1, Cancel = 2, Refound = 3, Reopen = 4
     }
 }
