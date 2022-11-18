@@ -23,5 +23,10 @@ namespace Domain.Entities
                 return false;
             } 
         }
+
+        public Room()
+        {
+            Price = new Price();
+        }
     }
 }

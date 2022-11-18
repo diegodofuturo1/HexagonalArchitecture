@@ -11,5 +11,10 @@ namespace Domain.ValueObjects
     {
         public double Value { get; set; }
         public AcceptCurrencies Currency { get; set; }
+
+        public Price()
+        {
+
+        }
     }
 }

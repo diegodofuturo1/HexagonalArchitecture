@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Ports
 {
-    internal interface IGuestRepository: IEntityRepository<Guest>
+    public interface IGuestRepository: IEntityRepository<Guest>
     {
     }
 }

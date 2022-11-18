@@ -2,7 +2,7 @@
 
 namespace Domain.Ports
 {
-    internal interface IEntityRepository<T> where T: Entity
+    public interface IEntityRepository<T> where T: Entity
     {
         Task<T> Select(long id);
         Task<IEnumerable<T>> Select();
