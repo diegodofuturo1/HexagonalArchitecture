@@ -7,17 +7,31 @@
         public string Message { get; set; }
         public List<string> Errors { get; set; } = new List<string>();
 
-        public ResponseDto(T data)
+        public ResponseDto(string mensagem)
         {
-            Data = data;
+            Success = true;
+            Message = mensagem;
         }
 
-        public ResponseDto(T data, bool success, string message, List<string> errors)
+        public ResponseDto<T> SendData(T data)
         {
+            Success = true;
             Data = data;
-            Success = success;
-            Message = message;
-            Errors = errors;
+            return this;
+        }
+
+        public ResponseDto<T> WithErrors(string error)
+        {
+            Success = false;
+            Errors = new List<string> { error };
+            return this;
+        }
+
+        public ResponseDto<T> WithErrors(IReadOnlyCollection<string> errors)
+        {
+            Success = false;
+            Errors = errors.ToList();
+            return this;
         }
     }
 }

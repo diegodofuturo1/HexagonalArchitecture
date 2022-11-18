@@ -11,13 +11,6 @@ namespace Domain.Entities
         public Room Room { get; set; }
         public Guest Guest { get; set; }
 
-        public Booking()
-        {
-            Room = new Room();
-            Guest = new Guest();
-        }
-
-
         public void ChangeStatus(BookingAction action)
         {
             Status = (Status, action) switch

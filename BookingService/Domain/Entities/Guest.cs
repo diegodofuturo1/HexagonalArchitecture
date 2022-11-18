@@ -1,17 +1,18 @@
-﻿using Domain.ValueObjects;
+﻿using Domain.Validators;
+using Domain.ValueObjects;
 
 namespace Domain.Entities
 {
-    public class Guest: Entity
+    public class Guest : Entity
     {
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
         public PersonId Document { get; set; }
 
         public Guest()
         {
-            Document = new PersonId();
+            Validate();
         }
 
         public Guest(string firstName, string lastName, string email, PersonId document)
@@ -20,6 +21,7 @@ namespace Domain.Entities
             LastName = lastName;
             Email = email;
             Document = document;
+            Validate();
         }
         public Guest(long id, string firstName, string lastName, string email, PersonId document)
         {
@@ -28,7 +30,9 @@ namespace Domain.Entities
             LastName = lastName;
             Email = email;
             Document = document;
+            Validate();
         }
+
+        public bool Validate() => Validate(new GuestValidator(), this);
     }
 }
- 
