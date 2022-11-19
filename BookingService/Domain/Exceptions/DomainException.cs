@@ -10,7 +10,7 @@ namespace Domain.Exceptions
     {
         public IReadOnlyCollection<string> Errors { get; set; }
 
-        public DomainException(IReadOnlyCollection<string> errors)
+        public DomainException(IReadOnlyCollection<string> errors): base(String.Join(" - ", errors))
         {
             Errors = errors;
         }

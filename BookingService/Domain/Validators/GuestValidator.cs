@@ -9,72 +9,72 @@ namespace Domain.Validators
         {
             RuleFor(guest => guest)
                 .NotEmpty()
-                .WithMessage("A entidade não pode estar vazia!");
+                .WithMessage(GuestValidatorMessage.Null);
 
             RuleFor(x => x.FirstName)
                 .NotNull()
-                .WithMessage("O nome não pode ser nulo.")
+                .WithMessage(GuestValidatorMessage.NullFirstName)
 
                 .NotEmpty()
-                .WithMessage("O nome não pode ser vazio.")
+                .WithMessage(GuestValidatorMessage.EmptyFirstName)
 
                 .MinimumLength(3)
-                .WithMessage("O nome deve ter no mínimo 3 caracteres.")
+                .WithMessage(GuestValidatorMessage.ShortFirstName)
 
                 .MaximumLength(80)
-                .WithMessage("O nome deve ter no máximo 80 caracteres.");
+                .WithMessage(GuestValidatorMessage.LongFirstName);
 
             RuleFor(x => x.LastName)
                 .NotNull()
-                .WithMessage("O sobrenome não pode ser nulo.")
+                .WithMessage(GuestValidatorMessage.NullLastName)
 
                 .NotEmpty()
-                .WithMessage("O sobrenome não pode ser vazio.")
+                .WithMessage(GuestValidatorMessage.EmptyLastName)
 
                 .MinimumLength(3)
-                .WithMessage("O sobrenome deve ter no mínimo 3 caracteres.")
+                .WithMessage(GuestValidatorMessage.ShortLastName)
 
                 .MaximumLength(80)
-                .WithMessage("O sobrenome deve ter no máximo 80 caracteres.");
+                .WithMessage(GuestValidatorMessage.LongLastName);
 
             RuleFor(x => x.Email)
                 .NotNull()
-                .WithMessage("O email não pode ser nulo.")
+                .WithMessage(GuestValidatorMessage.NullEmail)
 
                 .NotEmpty()
-                .WithMessage("O email não pode ser vazio.")
+                .WithMessage(GuestValidatorMessage.EmptyEmail)
 
                 .MinimumLength(10)
-                .WithMessage("O email deve ter no mínimo 10 caracteres.")
+                .WithMessage(GuestValidatorMessage.ShortEmail)
 
                 .MaximumLength(180)
-                .WithMessage("O email deve ter no máximo 180 caracteres.")
+                .WithMessage(GuestValidatorMessage.LongEmail)
 
-                .Matches(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$")
-                .WithMessage("O email informado não é válido.");
+                .EmailAddress()
+                .WithMessage(GuestValidatorMessage.InvalidEmail);
 
             RuleFor(x => x.Document.DocumentId)
                 .NotNull()
-                .WithMessage("O número do documento não pode ser nulo.")
+                .WithMessage(GuestValidatorMessage.NullDocumentId)
 
                 .NotEmpty()
-                .WithMessage("O número do documento não pode ser vazio.")
+                .WithMessage(GuestValidatorMessage.EmptyDocumentId)
 
                 .MinimumLength(5)
-                .WithMessage("O número do documento deve ter no mínimo 10 caracteres.")
+                .WithMessage(GuestValidatorMessage.ShortDocumentId)
 
                 .MaximumLength(20)
-                .WithMessage("O número do documento deve ter no máximo 20 caracteres.");
+                .WithMessage(GuestValidatorMessage.LongDocumentId);
 
             RuleFor(x => x.Document.DocumentType)
                 .NotNull()
-                .WithMessage("O tipo de documento não pode ser nulo.")
+                .WithMessage(GuestValidatorMessage.NullDocumentType)
 
                 .NotEmpty()
-                .WithMessage("O tipo de documento não pode ser vazio.")
+                .WithMessage(GuestValidatorMessage.EmptyDocumentType)
 
                 .IsInEnum()
-                .WithMessage("Tipo de documento inválido ou não encontrado.");
+                .WithMessage(GuestValidatorMessage.InvalidDocumentType);
         }
     }
 }

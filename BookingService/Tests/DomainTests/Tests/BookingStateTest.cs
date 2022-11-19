@@ -1,7 +1,7 @@
 using Domain.Emuns;
 using Domain.Entities;
 
-namespace Tests.DomainTests
+namespace HotelBookingTest.Tests
 {
     public class BookingStateTest
     {
