@@ -9,7 +9,8 @@ namespace Domain.ValueObjects
 
         public PersonId()
         {
-
+            DocumentId = "";
+            DocumentType = DocumentType.Cpf;
         }
 
         public PersonId(string documentId, DocumentType documentType)

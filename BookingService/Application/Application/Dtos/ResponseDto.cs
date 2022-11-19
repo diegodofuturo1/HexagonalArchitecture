@@ -7,15 +7,19 @@
         public string Message { get; set; }
         public List<string> Errors { get; set; } = new List<string>();
 
-        public ResponseDto(string mensagem)
+        public ResponseDto()
         {
-            Success = true;
+            Success= true;
+        }
+
+        public ResponseDto<T> WithMessage(string mensagem)
+        {
             Message = mensagem;
+            return this;
         }
 
         public ResponseDto<T> SendData(T data)
         {
-            Success = true;
             Data = data;
             return this;
         }

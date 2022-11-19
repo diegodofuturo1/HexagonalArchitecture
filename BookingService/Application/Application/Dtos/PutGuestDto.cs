@@ -18,8 +18,9 @@ namespace Application.Dtos
 
         }
 
-        public PutGuestDto(string firstName, string lastName, string email, string documentId, int documentType)
+        public PutGuestDto(long id, string firstName, string lastName, string email, string documentId, int documentType)
         {
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -29,6 +30,7 @@ namespace Application.Dtos
 
         public PutGuestDto(Guest guest)
         {
+            Id = guest.Id;
             FirstName = guest.FirstName;
             LastName = guest.LastName;
             Email = guest.Email;
@@ -38,7 +40,7 @@ namespace Application.Dtos
 
         public Guest ToEntity()
         {
-            return new Guest(FirstName, LastName, Email, new PersonId(DocumentId, (DocumentType)DocumentType));
+            return new Guest(Id, FirstName, LastName, Email, new PersonId(DocumentId, (DocumentType)DocumentType));
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Domain.Entities
 {
     public class Room: Entity
     {
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public int? Level { get; set; }
         public bool InMaintence { get; set; }
         public Price Price { get; set; }

@@ -1,48 +1,34 @@
-﻿using Domain.Ports;
+﻿using System;
+using Domain.Ports;
 using Domain.Entities;
 using SqlAdapter.Contexts;
+using System.Linq.Expressions;
 
 namespace SqlAdapter.Repositories
 {
-    public class GuestRepository : IGuestRepository
+    public class GuestRepository: BaseRepository<Guest>, IGuestRepository
     {
-        private readonly HotelDbContext context;
+        public GuestRepository(HotelDbContext context): base(context) { }
 
-        public GuestRepository(HotelDbContext context)
+        public async Task<Guest> GetByEmail(string email)
         {
-            this.context = context;
+            Expression<Func<Guest, bool>> filter = guest => guest.Email.ToLower() == email.ToLower();
+
+            return await Select(filter);
         }
 
-        public Task<Guest> Delete(long id)
+        public async Task<IEnumerable<Guest>> SearchByEmail(string email)
         {
-            throw new NotImplementedException();
+            Expression<Func<Guest, bool>> filter = guest => guest.Email.ToLower().Contains(email.ToLower());
+
+            return await Search(filter);
         }
 
-        public async Task<Guest> Insert(Guest entity)
+        public async Task<IEnumerable<Guest>> SearchByName(string name)
         {
-            context.Add(entity);
-            await context.SaveChangesAsync();
-            return entity;
-        }
+            Expression<Func<Guest, bool>> filter = guest => guest.FirstName.ToLower().Contains(name.ToLower());
 
-        public Task<Guest> Select(long id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Guest>> Select()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Guest>> Select(string prop, string value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Guest> Update(long id, Guest entity)
-        {
-            throw new NotImplementedException();
+            return await Search(filter);
         }
     }
 }

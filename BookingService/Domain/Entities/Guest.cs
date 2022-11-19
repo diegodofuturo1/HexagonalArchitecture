@@ -12,6 +12,10 @@ namespace Domain.Entities
 
         public Guest()
         {
+            FirstName = "";
+            LastName = "";
+            Email = "";
+            Document = new PersonId();
             Validate();
         }
 

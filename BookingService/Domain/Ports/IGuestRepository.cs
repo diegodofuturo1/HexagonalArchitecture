@@ -1,13 +1,11 @@
 ﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Ports
 {
     public interface IGuestRepository: IEntityRepository<Guest>
     {
+        Task<Guest> GetByEmail(string email);
+        Task<IEnumerable<Guest>> SearchByEmail(string email);
+        Task<IEnumerable<Guest>> SearchByName(string name);
     }
 }

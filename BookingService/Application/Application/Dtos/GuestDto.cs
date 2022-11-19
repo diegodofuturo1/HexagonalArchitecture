@@ -43,5 +43,13 @@ namespace Application.Dtos
             return new Guest(Id, FirstName, LastName, Email, new PersonId(DocumentId, (DocumentType)DocumentType));
         }
 
+        public static List<GuestDto> ToList(IEnumerable<Guest> entities)
+        {
+            if (entities == null || !entities.Any())
+                return new List<GuestDto>();    
+
+            return entities.Select(entity => new GuestDto(entity)).ToList();
+        }
+
     }
 }

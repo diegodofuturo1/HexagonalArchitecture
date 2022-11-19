@@ -2,7 +2,10 @@
 
 namespace Application.Ports
 {
-    public interface IGuestManage: IModelManage<GuestDto, PostGuestDto, PutGuestDto>
+    public interface IGuestManage: IBaseManage<GuestDto, PostGuestDto, PutGuestDto>
     {
+        Task<GuestDto> ReadByEmail(string email);
+        Task<IEnumerable<GuestDto>> SearchByEmail(string email);
+        Task<IEnumerable<GuestDto>> SearchByName(string name);
     }
 }
