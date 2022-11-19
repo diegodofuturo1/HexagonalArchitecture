@@ -4,7 +4,6 @@ using Bogus.DataSets;
 using Domain.Entities;
 using Application.Dtos;
 using Domain.ValueObjects;
-using System.Drawing;
 
 namespace HotelBookingTest.Fixtures
 {
@@ -35,7 +34,7 @@ namespace HotelBookingTest.Fixtures
     {
         public static int GetId()
         {
-            return new Randomizer().Int(1, 1000);
+            return new Randomizer().Int(2, 1000);
         }
 
         public static string GetString(int size = 10)
@@ -63,14 +62,19 @@ namespace HotelBookingTest.Fixtures
             return new Randomizer().Long(10000000000, 99999999999).ToString("###.###.###-##");
         }
 
-        public static Guest GetValidGuest()
+        public static Guest GetValidGuest(long id = 0)
         {
-            return new Guest(GetName(), GetPassword(), GetEmail(), new PersonId(GetCpf(), DocumentType.Cpf));
+            return new Guest(id > 0 ? id : GetId(), GetName(), GetPassword(), GetEmail(), new PersonId(GetCpf(), DocumentType.Cpf));
         }
 
         public static PostGuestDto GetValidPostGuest()
         {
             return new PostGuestDto(GetValidGuest());
+        }
+
+        public static PutGuestDto GetValidPutGuest(long id = 0)
+        {
+            return new PutGuestDto(GetValidGuest(id));
         }
 
         public static List<Guest> GetValidListGuests(int limit = 5)

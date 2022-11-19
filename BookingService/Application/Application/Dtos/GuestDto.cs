@@ -30,6 +30,9 @@ namespace Application.Dtos
 
         public GuestDto(Guest guest)
         {
+            if (guest == null)
+                return;
+
             Id = guest.Id;
             FirstName = guest.FirstName;
             LastName = guest.LastName;

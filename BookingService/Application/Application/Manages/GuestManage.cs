@@ -25,6 +25,9 @@ namespace Application.Manages
         {
             var entity = await Repository.Select(id);
 
+            if (entity == null)
+                return null;
+
             return new GuestDto(entity);
         }
 
