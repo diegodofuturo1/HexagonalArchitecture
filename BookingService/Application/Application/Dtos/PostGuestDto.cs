@@ -15,7 +15,11 @@ namespace Application.Dtos
 
         public PostGuestDto()
         {
-
+            FirstName = string.Empty;
+            LastName = string.Empty;
+            Email = string.Empty;
+            DocumentId = string.Empty;
+            DocumentType = 3;
         }
 
         [JsonConstructor]

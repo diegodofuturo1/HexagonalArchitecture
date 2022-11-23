@@ -10,7 +10,7 @@ namespace HotelBookingTest.Mocks
 {
     internal class GuestRepositoryMock : IGuestRepository
     {
-        private List<Guest> guests = GuestFixture.GetValidListGuests(100);
+        private List<Guest> guests = GuestFixture.GetValidListGuests(0);
 
         public Task<Guest> Delete(long id)
         {

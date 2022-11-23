@@ -1,5 +1,4 @@
-﻿using System;
-using Domain.Ports;
+﻿using Domain.Ports;
 using Domain.Entities;
 using SqlAdapter.Contexts;
 using System.Linq.Expressions;

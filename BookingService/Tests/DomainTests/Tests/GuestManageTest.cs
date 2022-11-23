@@ -25,12 +25,13 @@ namespace HotelBookingTest.Tests
         [Test]
         public async Task ShouldCreateGuest()
         {
-            var created = await manage.Create(new PostGuestDto(guest1));
+            var entity = GuestFixture.GetValidGuest();
+            var created = await manage.Create(new PostGuestDto(entity));
 
             Assert.Multiple(() =>
             {
                 Assert.That(created, Is.Not.Null);
-                Assert.That(created.Id, Is.Not.EqualTo(0));
+                Assert.That(created.Id, Is.Not.LessThanOrEqualTo(0));
             });
         }
 
@@ -46,7 +47,7 @@ namespace HotelBookingTest.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(response, Is.Not.Null);
-                Assert.That(response.Count(), Is.EqualTo(103));
+                Assert.That(response.Count(), Is.EqualTo(3));
                 Assert.That(response.ToList().FindAll(g => g.Id == g1.Id || g.Id == g2.Id || g.Id == g3.Id), Is.Not.Empty);
             });
         }
@@ -208,7 +209,7 @@ namespace HotelBookingTest.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(response, Is.Not.Null);
-                Assert.That(response.Count(), Is.EqualTo(100));
+                Assert.That(response.Count(), Is.EqualTo(0));
             });
         }
 

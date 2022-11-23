@@ -32,9 +32,9 @@ namespace HotelBookingTest.Fixtures
 
     internal class GuestFixture
     {
-        public static int GetId()
+        public static long GetId()
         {
-            return new Randomizer().Int(2, 1000);
+            return new Randomizer().Long(1, 1000);
         }
 
         public static string GetString(int size = 10)
