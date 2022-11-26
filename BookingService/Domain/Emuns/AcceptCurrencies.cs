@@ -8,6 +8,6 @@ namespace Domain.Emuns
 {
     public enum AcceptCurrencies
     {
-        Dollar = 0, Euro = 1, Real = 2, BitCoin = 3
+        Default = 0, Dollar = 1, Euro = 2, Real = 3, BitCoin = 4
     }
 }

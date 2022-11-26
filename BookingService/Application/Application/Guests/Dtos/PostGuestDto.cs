@@ -1,9 +1,8 @@
 ﻿using Domain.Emuns;
 using Domain.Entities;
 using Domain.ValueObjects;
-using System.Text.Json.Serialization;
 
-namespace Application.Dtos
+namespace Application.Guests.Dtos
 {
     public class PostGuestDto
     {
@@ -11,7 +10,7 @@ namespace Application.Dtos
         public string LastName { get; set; }
         public string Email { get; set; }
         public string DocumentId { get; set; }
-        public int? DocumentType { get; set; }
+        public int DocumentType { get; set; }
 
         public PostGuestDto()
         {
@@ -22,7 +21,6 @@ namespace Application.Dtos
             DocumentType = 3;
         }
 
-        [JsonConstructor]
         public PostGuestDto(string firstName, string lastName, string email, string documentId, int documentType)
         {
             FirstName = firstName;
