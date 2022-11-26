@@ -1,18 +1,28 @@
 using Domain.Ports;
-using Application.Ports;
-using Application.Manages;
 using SqlAdapter.Contexts;
 using SqlAdapter.Repositories;
+using Application.Rooms.Ports;
+using Application.Guests.Ports;
+using Application.Bookings.Ports;
+using Application.Rooms.Manages;
+using Application.Guests.Manages;
+using Application.Bookings.Managers;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers().AddNewtonsoftJson();
-builder.Services.AddScoped<IGuestManage, GuestManage>();
-builder.Services.AddScoped<IGuestRepository, GuestRepository>();
 
+// Add dependencies injections.
+builder.Services.AddScoped<IGuestManager, GuestManager>();
+builder.Services.AddScoped<IGuestRepository, GuestRepository>();
+builder.Services.AddScoped<IRoomManager, RoomManager>();
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<IBookingManager, BookingManager>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
+// Add database connection string
 var connectionString = builder.Configuration.GetConnectionString("SqlServer");
 builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer(connectionString));
 

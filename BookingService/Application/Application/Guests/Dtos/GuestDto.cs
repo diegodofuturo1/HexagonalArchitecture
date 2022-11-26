@@ -2,9 +2,9 @@
 using Domain.Entities;
 using Domain.ValueObjects;
 
-namespace Application.Dtos
+namespace Application.Guests.Dtos
 {
-    public class PutGuestDto
+    public class GuestDto
     {
         public long Id { get; set; }
         public string FirstName { get; set; }
@@ -13,12 +13,12 @@ namespace Application.Dtos
         public string DocumentId { get; set; }
         public int DocumentType { get; set; }
 
-        public PutGuestDto()
+        public GuestDto()
         {
 
         }
 
-        public PutGuestDto(long id, string firstName, string lastName, string email, string documentId, int documentType)
+        public GuestDto(long id, string firstName, string lastName, string email, string documentId, int documentType)
         {
             Id = id;
             FirstName = firstName;
@@ -28,19 +28,40 @@ namespace Application.Dtos
             DocumentType = documentType;
         }
 
-        public PutGuestDto(Guest guest)
+        public GuestDto(Guest guest)
         {
+            Load(guest);    
+        }
+
+
+
+        public GuestDto Load(Guest guest)
+        {
+            if (guest == null)
+                return default;
+
             Id = guest.Id;
             FirstName = guest.FirstName;
             LastName = guest.LastName;
             Email = guest.Email;
             DocumentId = guest.Document.DocumentId;
             DocumentType = (int)guest.Document.DocumentType;
+
+            return this;
         }
 
         public Guest ToEntity()
         {
             return new Guest(Id, FirstName, LastName, Email, new PersonId(DocumentId, (DocumentType)DocumentType));
         }
+
+        public static List<GuestDto> ToList(IEnumerable<Guest> entities)
+        {
+            if (entities == null || !entities.Any())
+                return new List<GuestDto>();
+
+            return entities.Select(entity => new GuestDto(entity)).ToList();
+        }
+
     }
 }

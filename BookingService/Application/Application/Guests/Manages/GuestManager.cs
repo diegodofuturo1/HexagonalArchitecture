@@ -1,15 +1,15 @@
 ﻿using Domain.Ports;
-using Application.Dtos;
-using Application.Ports;
 using Domain.Exceptions;
+using Application.Guests.Dtos;
+using Application.Guests.Ports;
 
-namespace Application.Manages
+namespace Application.Guests.Manages
 {
-    public class GuestManage : IGuestManage
+    public class GuestManager : IGuestManager
     {
         private IGuestRepository Repository { get; set; }
 
-        public GuestManage(IGuestRepository repository)
+        public GuestManager(IGuestRepository repository)
         {
             Repository = repository;
         }
