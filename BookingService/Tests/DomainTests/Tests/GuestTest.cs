@@ -27,7 +27,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.NullFirstName));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.NullFirstName));
             }
 
         }
@@ -43,7 +43,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.EmptyFirstName));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.EmptyFirstName));
             }
 
         }
@@ -59,7 +59,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.ShortFirstName));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.ShortFirstName));
             }
 
         }
@@ -75,7 +75,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.LongFirstName));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.LongFirstName));
             }
 
         }
@@ -91,7 +91,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.NullLastName));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.NullLastName));
             }
 
         }
@@ -107,7 +107,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.EmptyLastName));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.EmptyLastName));
             }
 
         }
@@ -123,7 +123,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.ShortLastName));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.ShortLastName));
             }
 
         }
@@ -139,7 +139,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.LongLastName));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.LongLastName));
             }
 
         }
@@ -155,7 +155,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.NullEmail));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.NullEmail));
             }
 
         }
@@ -171,7 +171,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.EmptyEmail));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.EmptyEmail));
             }
 
         }
@@ -187,7 +187,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.ShortEmail));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.ShortEmail));
             }
 
         }
@@ -203,7 +203,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.LongEmail));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.LongEmail));
             }
 
         }
@@ -219,7 +219,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.InvalidEmail));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.InvalidEmail));
             }
 
         }
@@ -235,7 +235,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.NullDocumentId));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.NullDocumentId));
             }
 
         }
@@ -251,7 +251,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.EmptyDocumentId));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.EmptyDocumentId));
             }
 
         }
@@ -267,7 +267,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.LongDocumentId));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.LongDocumentId));
             }
 
         }
@@ -283,7 +283,7 @@ namespace HotelBookingTest.Tests
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessages.InvalidDocumentType));
+                Assert.That(exception.Errors, Does.Contain(GuestValidatorMessage.InvalidDocumentType));
             }
 
         }

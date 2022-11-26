@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Validators
 {
-    public static class GuestValidatorMessages
+    public static class GuestValidatorMessage
     {
         public static readonly string Null = "A entidade não pode estar vazia!";
         public static readonly string NullFirstName = "O nome não pode ser nulo.";

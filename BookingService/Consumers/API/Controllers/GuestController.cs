@@ -1,7 +1,7 @@
-﻿using Application;
+﻿using Application.Dtos;
+using Application.Ports;
+using Domain.Entities;
 using Domain.Exceptions;
-using Application.Guests.Dtos;
-using Application.Guests.Ports;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -11,12 +11,12 @@ namespace API.Controllers
     public class GuestController : ControllerBase
     {
         private readonly ILogger<GuestController> logger;
-        private IGuestManager Manager { get; set; }
+        private readonly IGuestManage manager;
 
-        public GuestController(ILogger<GuestController> logger, IGuestManager manager)
+        public GuestController(ILogger<GuestController> logger, IGuestManage manager)
         {
             this.logger = logger;
-            this.Manager = manager;
+            this.manager = manager;
         }
 
         [HttpPost]
@@ -25,7 +25,7 @@ namespace API.Controllers
         {
             try
             {
-                var data = await Manager.Create(guest);
+                var data = await manager.Create(guest);
 
                 var response = new ResponseDto<GuestDto>()
                     .WithMessage("Hóspede criado com sucesso.")
@@ -60,7 +60,7 @@ namespace API.Controllers
         {
             try
             {
-                var data = await Manager.Update(guest);
+                var data = await manager.Update(guest);
 
                 var response = new ResponseDto<GuestDto>()
                     .WithMessage("Hóspede atualizado com sucesso.")
@@ -96,7 +96,7 @@ namespace API.Controllers
         {
             try
             {
-                var data = await Manager.Delete(id);
+                var data = await manager.Delete(id);
 
                 var response = new ResponseDto<GuestDto>()
                     .WithMessage("Hóspede deletado com sucesso.")
@@ -107,7 +107,7 @@ namespace API.Controllers
             }
             catch (Exception exception)
             {
-                logger.LogError($"Guest not deleted: ${exception.Message}", exception);
+                logger.LogError($"Guest not deleted: ${exception.Message}");
 
                 var response = new ResponseDto<GuestDto>()
                     .WithMessage("Não foi possível deletar o hóspede.")
@@ -123,7 +123,7 @@ namespace API.Controllers
         {
             try
             {
-                var data = await Manager.Read();
+                var data = await manager.Read();
 
                 var response = new ResponseDto<IEnumerable<GuestDto>>()
                     .WithMessage("Hóspedes obtidos com sucesso.")
@@ -151,7 +151,7 @@ namespace API.Controllers
         {
             try
             {
-                var data = await Manager.Read(id);
+                var data = await manager.Read(id);
 
                 var response = new ResponseDto<GuestDto>()
                     .WithMessage("Hóspede obtido com sucesso.")
@@ -178,7 +178,7 @@ namespace API.Controllers
         {
             try
             {
-                var data = await Manager.ReadByEmail(email);
+                var data = await manager.ReadByEmail(email);
 
                 var response = new ResponseDto<GuestDto>()
                     .WithMessage("Hóspedes obtidos com sucesso.")
@@ -205,7 +205,7 @@ namespace API.Controllers
         {
             try
             {
-                var data = await Manager.SearchByEmail(email);
+                var data = await manager.SearchByEmail(email);
 
                 var response = new ResponseDto<IEnumerable<GuestDto>>()
                     .WithMessage("Hóspedes obtidos com sucesso.")
@@ -232,7 +232,7 @@ namespace API.Controllers
         {
             try
             {
-                var data = await Manager.SearchByName(name);
+                var data = await manager.SearchByName(name);
 
                 var response = new ResponseDto<IEnumerable<GuestDto>>()
                     .WithMessage("Hóspedes obtidos com sucesso.")

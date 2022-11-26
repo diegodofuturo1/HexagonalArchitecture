@@ -1,17 +1,16 @@
 ﻿using Domain.Entities;
 using Domain.Exceptions;
-using Application.Guests.Dtos;
-using Application.Guests.Ports;
-using Application.Guests.Manages;
+using Application.Dtos;
+using Application.Ports;
+using Application.Manages;
 using HotelBookingTest.Mocks;
 using HotelBookingTest.Fixtures;
-using Bogus;
 
 namespace HotelBookingTest.Tests
 {
-    internal class GuestManagerTest
+    internal class GuestManageTest
     {
-        private IGuestManager manage;
+        private IGuestManage manage;
 
         private readonly Guest guest1 = GuestFixture.GetValidGuest();
         private readonly Guest guest2 = GuestFixture.GetValidGuest();
@@ -20,7 +19,7 @@ namespace HotelBookingTest.Tests
         [SetUp]
         public void Setup()
         {
-            manage = new GuestManager(new GuestRepositoryMock());
+            manage = new GuestManage(new GuestRepositoryMock());
         }
 
         [Test]
@@ -39,13 +38,9 @@ namespace HotelBookingTest.Tests
         [Test]
         public async Task ShouldReadGuests()
         {
-            var guestEntity1 = GuestFixture.GetValidGuest();
-            var guestEntity2 = GuestFixture.GetValidGuest();
-            var guestEntity3 = GuestFixture.GetValidGuest();
-
-            var guestDto1 = await manage.Create(new PostGuestDto(guestEntity1));
-            var guestDto2 = await manage.Create(new PostGuestDto(guestEntity2));
-            var guestDto3 = await manage.Create(new PostGuestDto(guestEntity3));
+            var g1 = await manage.Create(new PostGuestDto(guest1));
+            var g2 = await manage.Create(new PostGuestDto(guest2));
+            var g3 = await manage.Create(new PostGuestDto(guest3));
 
             var response = await manage.Read();
 
@@ -53,9 +48,7 @@ namespace HotelBookingTest.Tests
             {
                 Assert.That(response, Is.Not.Null);
                 Assert.That(response.Count(), Is.EqualTo(3));
-                Assert.That(response.ToList().Find(x => x.Id == guestDto1.Id), Is.Not.Null);
-                Assert.That(response.ToList().Find(x => x.Id == guestDto2.Id), Is.Not.Null);
-                Assert.That(response.ToList().Find(x => x.Id == guestDto3.Id), Is.Not.Null);
+                Assert.That(response.ToList().FindAll(g => g.Id == g1.Id || g.Id == g2.Id || g.Id == g3.Id), Is.Not.Empty);
             });
         }
 

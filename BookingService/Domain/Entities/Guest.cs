@@ -12,19 +12,11 @@ namespace Domain.Entities
 
         public Guest()
         {
-            FirstName = string.Empty;
-            LastName = string.Empty;
-            Email = string.Empty;
+            FirstName = "";
+            LastName = "";
+            Email = "";
             Document = new PersonId();
-        }
-
-        public Guest(long id)
-        {
-            Id = id;
-            FirstName = string.Empty;
-            LastName = string.Empty;
-            Email = string.Empty;
-            Document = new PersonId();
+            Validate();
         }
 
         public Guest(string firstName, string lastName, string email, PersonId document)
@@ -33,6 +25,7 @@ namespace Domain.Entities
             LastName = lastName;
             Email = email;
             Document = document;
+            Validate();
         }
         public Guest(long id, string firstName, string lastName, string email, PersonId document)
         {
@@ -41,6 +34,7 @@ namespace Domain.Entities
             LastName = lastName;
             Email = email;
             Document = document;
+            Validate();
         }
 
         public bool Validate() => Validate(new GuestValidator(), this);

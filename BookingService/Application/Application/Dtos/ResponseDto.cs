@@ -1,4 +1,4 @@
-﻿namespace Application
+﻿namespace Application.Dtos
 {
     public class ResponseDto<T>
     {
@@ -9,7 +9,7 @@
 
         public ResponseDto()
         {
-            Success = true;
+            Success= true;
         }
 
         public ResponseDto<T> WithMessage(string mensagem)

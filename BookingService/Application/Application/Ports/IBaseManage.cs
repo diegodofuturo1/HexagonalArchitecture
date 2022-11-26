@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 
-namespace Application
+namespace Application.Ports
 {
-    public interface IBaseManager<TGet, TPost, TPut>
+    public interface IBaseManage<TGet, TPost, TPut>
     {
         Task<TGet> Create(TPost model);
         Task<TGet> Read(long id);

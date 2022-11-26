@@ -1,4 +1,9 @@
 ﻿using Domain.Emuns;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Domain.ValueObjects
 {
@@ -10,12 +15,6 @@ namespace Domain.ValueObjects
         public Price()
         {
 
-        }
-
-        public Price(double value, AcceptCurrencies currency)
-        {
-            Value = value;
-            Currency = currency;
         }
     }
 }

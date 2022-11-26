@@ -1,8 +1,8 @@
-﻿using Application.Guests.Dtos;
+﻿using Application.Dtos;
 
-namespace Application.Guests.Ports
+namespace Application.Ports
 {
-    public interface IGuestManager : IBaseManager<GuestDto, PostGuestDto, PutGuestDto>
+    public interface IGuestManage: IBaseManage<GuestDto, PostGuestDto, PutGuestDto>
     {
         Task<GuestDto> ReadByEmail(string email);
         Task<IEnumerable<GuestDto>> SearchByEmail(string email);

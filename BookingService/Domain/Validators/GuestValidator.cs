@@ -9,72 +9,72 @@ namespace Domain.Validators
         {
             RuleFor(guest => guest)
                 .NotEmpty()
-                .WithMessage(GuestValidatorMessages.Null);
+                .WithMessage(GuestValidatorMessage.Null);
 
             RuleFor(x => x.FirstName)
                 .NotNull()
-                .WithMessage(GuestValidatorMessages.NullFirstName)
+                .WithMessage(GuestValidatorMessage.NullFirstName)
 
                 .NotEmpty()
-                .WithMessage(GuestValidatorMessages.EmptyFirstName)
+                .WithMessage(GuestValidatorMessage.EmptyFirstName)
 
                 .MinimumLength(3)
-                .WithMessage(GuestValidatorMessages.ShortFirstName)
+                .WithMessage(GuestValidatorMessage.ShortFirstName)
 
                 .MaximumLength(80)
-                .WithMessage(GuestValidatorMessages.LongFirstName);
+                .WithMessage(GuestValidatorMessage.LongFirstName);
 
             RuleFor(x => x.LastName)
                 .NotNull()
-                .WithMessage(GuestValidatorMessages.NullLastName)
+                .WithMessage(GuestValidatorMessage.NullLastName)
 
                 .NotEmpty()
-                .WithMessage(GuestValidatorMessages.EmptyLastName)
+                .WithMessage(GuestValidatorMessage.EmptyLastName)
 
                 .MinimumLength(3)
-                .WithMessage(GuestValidatorMessages.ShortLastName)
+                .WithMessage(GuestValidatorMessage.ShortLastName)
 
                 .MaximumLength(80)
-                .WithMessage(GuestValidatorMessages.LongLastName);
+                .WithMessage(GuestValidatorMessage.LongLastName);
 
             RuleFor(x => x.Email)
                 .NotNull()
-                .WithMessage(GuestValidatorMessages.NullEmail)
+                .WithMessage(GuestValidatorMessage.NullEmail)
 
                 .NotEmpty()
-                .WithMessage(GuestValidatorMessages.EmptyEmail)
+                .WithMessage(GuestValidatorMessage.EmptyEmail)
 
                 .MinimumLength(10)
-                .WithMessage(GuestValidatorMessages.ShortEmail)
+                .WithMessage(GuestValidatorMessage.ShortEmail)
 
                 .MaximumLength(180)
-                .WithMessage(GuestValidatorMessages.LongEmail)
+                .WithMessage(GuestValidatorMessage.LongEmail)
 
                 .EmailAddress()
-                .WithMessage(GuestValidatorMessages.InvalidEmail);
+                .WithMessage(GuestValidatorMessage.InvalidEmail);
 
             RuleFor(x => x.Document.DocumentId)
                 .NotNull()
-                .WithMessage(GuestValidatorMessages.NullDocumentId)
+                .WithMessage(GuestValidatorMessage.NullDocumentId)
 
                 .NotEmpty()
-                .WithMessage(GuestValidatorMessages.EmptyDocumentId)
+                .WithMessage(GuestValidatorMessage.EmptyDocumentId)
 
                 .MinimumLength(5)
-                .WithMessage(GuestValidatorMessages.ShortDocumentId)
+                .WithMessage(GuestValidatorMessage.ShortDocumentId)
 
                 .MaximumLength(20)
-                .WithMessage(GuestValidatorMessages.LongDocumentId);
+                .WithMessage(GuestValidatorMessage.LongDocumentId);
 
             RuleFor(x => x.Document.DocumentType)
                 .NotNull()
-                .WithMessage(GuestValidatorMessages.NullDocumentType)
+                .WithMessage(GuestValidatorMessage.NullDocumentType)
 
                 .NotEmpty()
-                .WithMessage(GuestValidatorMessages.EmptyDocumentType)
+                .WithMessage(GuestValidatorMessage.EmptyDocumentType)
 
                 .IsInEnum()
-                .WithMessage(GuestValidatorMessages.InvalidDocumentType);
+                .WithMessage(GuestValidatorMessage.InvalidDocumentType);
         }
     }
 }

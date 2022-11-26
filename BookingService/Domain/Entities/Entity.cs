@@ -6,7 +6,6 @@ namespace Domain.Entities
     {
         public long Id { get; set; }
 
-
         internal List<string> errors = new();
 
         public bool IsValid => errors.Count == 0;
