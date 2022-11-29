@@ -44,6 +44,9 @@ namespace Application.Rooms.Dtos
 
         public RoomDto Load(Room room)
         {
+            if (room == null)
+                return null;
+
             Id = room.Id;
             Name = room.Name;
             Level = room.Level;

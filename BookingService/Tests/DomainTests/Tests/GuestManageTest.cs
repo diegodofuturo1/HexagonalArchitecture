@@ -1,11 +1,10 @@
 ﻿using Domain.Entities;
 using Domain.Exceptions;
+using HotelBookingTest.Mocks;
 using Application.Guests.Dtos;
 using Application.Guests.Ports;
-using Application.Guests.Manages;
-using HotelBookingTest.Mocks;
 using HotelBookingTest.Fixtures;
-using Bogus;
+using Application.Guests.Manages;
 
 namespace HotelBookingTest.Tests
 {

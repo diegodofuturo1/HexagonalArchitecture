@@ -46,6 +46,9 @@ namespace Application.Bookings.Dtos
 
         public BookingDto Load(Booking booking)
         {
+            if (booking == null)
+                return null;
+
             Id= booking.Id;
             PlaceAt = booking.PlaceAt;
             Start = booking.Start;

@@ -34,8 +34,21 @@ namespace HotelBookingTest.Mocks
 
         public Task<T> Update(T entity)
         {
-            var update = entitys.Find(register => register.Id == entity.Id);
-            return Task.FromResult(entity);
+            var type = entity.GetType();
+            var properties = type.GetProperties().ToList();
+            var updated = entitys.Find(register => register.Id == entity.Id);
+
+            properties.ForEach(property =>
+            {
+                try
+                {
+                    var value = property.GetValue(entity);
+                    property.SetValue(updated, value);
+                }
+                catch { }
+            });
+
+            return Task.FromResult(updated);
         }
     }
 }
