@@ -23,14 +23,14 @@ namespace Domain.Validators
                 .NotNull()
                 .WithMessage(BookingValidatorMessages.NullRoom)
 
-                .LessThanOrEqualTo(0)
+                .GreaterThan(0)
                 .WithMessage(BookingValidatorMessages.InvalidRoom);
 
             RuleFor(x => x.Guest.Id)
                 .NotNull()
                 .WithMessage(BookingValidatorMessages.NullGuest)
 
-                .LessThanOrEqualTo(0)
+                .GreaterThan(0)
                 .WithMessage(BookingValidatorMessages.InvalidGuest);
         }
     }

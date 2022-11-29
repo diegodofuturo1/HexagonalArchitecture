@@ -7,13 +7,9 @@ namespace Domain.Validators
     {
         public RoomValidator()
         {
-            RuleFor(guest => guest)
+            RuleFor(room => room)
                 .NotNull()
                 .WithMessage(RoomValidatorMessages.Null);
-
-            RuleFor(guest => guest)
-                .Empty()
-                .WithMessage(RoomValidatorMessages.Empty);
 
             RuleFor(x => x.Name)
                 .NotNull()
@@ -32,7 +28,7 @@ namespace Domain.Validators
                 .NotNull()
                 .WithMessage(RoomValidatorMessages.NullLevel)
 
-                .LessThanOrEqualTo(0)
+                .GreaterThan(0)
                 .WithMessage(RoomValidatorMessages.MinLevel);
 
             RuleFor(x => x.InMaintence)
@@ -43,7 +39,7 @@ namespace Domain.Validators
                 .NotNull()
                 .WithMessage(RoomValidatorMessages.NullPriceValue)
 
-                .LessThanOrEqualTo(0)
+                .GreaterThan(0)
                 .WithMessage(RoomValidatorMessages.MinPriceValue);
 
             RuleFor(x => x.Price.Currency)

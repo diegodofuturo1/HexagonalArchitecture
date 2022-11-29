@@ -10,6 +10,16 @@ namespace HotelBookingTest.Fixtures
             return new Randomizer().Long(1, 1000);
         }
 
+        public static int GetNumber(int min = 1, int max = 999)
+        {
+            return new Randomizer().Int(min, max);
+        }
+
+        public static double GetPrice(double min = 1, double max = 999)
+        {
+            return new Randomizer().Double(min, max);
+        }
+
         public static string GetString(int size = 10)
         {
             return new Randomizer().String(size);
