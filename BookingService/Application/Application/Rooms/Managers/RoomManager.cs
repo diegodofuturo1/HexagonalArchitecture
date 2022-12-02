@@ -42,7 +42,7 @@ namespace Application.Rooms.Manages
         {
             var entity = model.ToEntity();
 
-            if (!entity.IsValid)
+            if (!entity.Validate())
                 throw new DomainException(entity.Errors);
 
             var result = await Repository.Insert(entity);
@@ -54,7 +54,7 @@ namespace Application.Rooms.Manages
         {
             var entity = model.ToEntity();
 
-            if (!entity.IsValid)
+            if (!entity.Validate())
                 throw new DomainException(entity.Errors);
 
             var result = await Repository.Update(entity);

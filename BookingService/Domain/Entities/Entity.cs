@@ -23,7 +23,7 @@ namespace Domain.Entities
                 foreach (var error in validation.Errors)
                     errors.Add(error.ErrorMessage);
 
-            return errors.Count == 0;
+            return IsValid;
         }
 
         public string ErrorsToString()

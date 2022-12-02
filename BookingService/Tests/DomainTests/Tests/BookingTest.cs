@@ -52,13 +52,13 @@ namespace HotelBookingTest.Tests
         {
             try
             {
-                var booking = BookingFixture.GetInvalidBooking(InvalidBooking.EmptyGuest);
+                var booking = BookingFixture.GetInvalidBooking(InvalidBooking.EmptyRoom);
 
                 booking.Validate();
             }
             catch (DomainException exception)
             {
-                Assert.That(exception.Errors, Does.Contain(BookingValidatorMessages.InvalidGuest));
+                Assert.That(exception.Errors, Does.Contain(BookingValidatorMessages.InvalidRoom));
             }
         }
 

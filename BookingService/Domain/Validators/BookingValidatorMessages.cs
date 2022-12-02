@@ -14,6 +14,6 @@ namespace Domain.Validators
         public static readonly string NullRoom = "O aluguel informado não tem um quarto.";
         public static readonly string InvalidRoom = "O aluguel informado não tem um quarto válido.";
         public static readonly string NullGuest = "O aluguel informado não tem um hóspede.";
-        public static readonly string InvalidGuest = "O aluguel informado não tem um quarto válido.";
+        public static readonly string InvalidGuest = "O aluguel informado não tem um hóspede válido.";
     }
 }

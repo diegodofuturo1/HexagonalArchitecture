@@ -18,7 +18,7 @@ namespace Application.Bookings.Managers
         {
             var entity = model.ToEntity();
 
-            if (!entity.IsValid)
+            if (!entity.Validate())
                 throw new DomainException(entity.Errors);
 
             var result = await Repository.Insert(entity);
@@ -54,7 +54,7 @@ namespace Application.Bookings.Managers
         {
             var entiity = model.ToEntity();
 
-            if (!entiity.IsValid)
+            if (!entiity.Validate())
                 throw new DomainException(entiity.Errors);
 
             var result = await Repository.Update(entiity);
