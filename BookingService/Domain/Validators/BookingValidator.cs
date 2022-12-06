@@ -19,14 +19,14 @@ namespace Domain.Validators
                 .WithMessage(BookingValidatorMessages.IsNotAStatus)
 ;
 
-            RuleFor(x => x.Room.Id)
+            RuleFor(x => x.RoomId)
                 .NotNull()
                 .WithMessage(BookingValidatorMessages.NullRoom)
 
                 .GreaterThan(0)
                 .WithMessage(BookingValidatorMessages.InvalidRoom);
 
-            RuleFor(x => x.Guest.Id)
+            RuleFor(x => x.GuestId)
                 .NotNull()
                 .WithMessage(BookingValidatorMessages.NullGuest)
 

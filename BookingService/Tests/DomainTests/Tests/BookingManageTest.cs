@@ -11,26 +11,24 @@ namespace HotelBookingTest.Tests
     {
         private IBookingManager manage;
 
-        private readonly Booking booking1 = BookingFixture.GetValidBooking();
-        private readonly Booking booking2 = BookingFixture.GetValidBooking();
-        private readonly Booking booking3 = BookingFixture.GetValidBooking();
-
         [SetUp]
         public void Setup()
         {
-            manage = new BookingManager(new BookingRepositoryMock());
+            manage = new BookingManager(new BookingRepositoryMock(), new GuestRepositoryMock(), new RoomRepositoryMock());
         }
 
         [Test]
         public async Task ShouldCreateBooking()
         {
-            var entity = BookingFixture.GetValidBooking();
-            var created = await manage.Create(new PostBookingDto(entity));
+            var booking = BookingFixture.GetValidBooking();
+            var created = await manage.Create(new PostBookingDto(booking));
 
             Assert.Multiple(() =>
             {
                 Assert.That(created, Is.Not.Null);
                 Assert.That(created.Id, Is.Not.LessThanOrEqualTo(0));
+                Assert.That(created.Room.Id, Is.EqualTo(1));
+                Assert.That(created.Guest.Id, Is.EqualTo(1));
             });
         }
 
@@ -52,8 +50,14 @@ namespace HotelBookingTest.Tests
                 Assert.That(response, Is.Not.Null);
                 Assert.That(response.Count(), Is.EqualTo(3));
                 Assert.That(response.ToList().Find(x => x.Id == bookingDto1.Id), Is.Not.Null);
+                Assert.That(response.ToList().Find(x => x.Id == bookingDto1.Id).Room.Id, Is.EqualTo(1));
+                Assert.That(response.ToList().Find(x => x.Id == bookingDto1.Id).Guest.Id, Is.EqualTo(1));
                 Assert.That(response.ToList().Find(x => x.Id == bookingDto2.Id), Is.Not.Null);
+                Assert.That(response.ToList().Find(x => x.Id == bookingDto2.Id).Room.Id, Is.EqualTo(1));
+                Assert.That(response.ToList().Find(x => x.Id == bookingDto2.Id).Guest.Id, Is.EqualTo(1));
                 Assert.That(response.ToList().Find(x => x.Id == bookingDto3.Id), Is.Not.Null);
+                Assert.That(response.ToList().Find(x => x.Id == bookingDto3.Id).Room.Id, Is.EqualTo(1));
+                Assert.That(response.ToList().Find(x => x.Id == bookingDto3.Id).Guest.Id, Is.EqualTo(1));
             });
         }
 
@@ -61,75 +65,58 @@ namespace HotelBookingTest.Tests
         [Test]
         public async Task ShouldReadByIdBookings()
         {
-            var g1 = await manage.Create(new PostBookingDto(booking1));
-            var g2 = await manage.Create(new PostBookingDto(booking2));
-            var g3 = await manage.Create(new PostBookingDto(booking3));
+            var post = BookingFixture.GetValidPostBooking();
 
-            var response1 = await manage.Read(g1.Id);
-            var response2 = await manage.Read(g2.Id);
-            var response3 = await manage.Read(g3.Id);
+            var created = await manage.Create(post);
+
+            var response = await manage.Read(created.Id);
 
             Assert.Multiple(() =>
             {
-                Assert.That(response1, Is.Not.Null);
-                Assert.That(response2, Is.Not.Null);
-                Assert.That(response3, Is.Not.Null);
+                Assert.That(response, Is.Not.Null);
+                Assert.That(response.Id, Is.EqualTo(created.Id));
+                Assert.That(response.Room.Id, Is.EqualTo(created.Room.Id));
+                Assert.That(response.Guest.Id, Is.EqualTo(created.Guest.Id));
             });
         }
 
         [Test]
         public async Task ShouldUpdateBookings()
         {
-            var created1 = await manage.Create(new PostBookingDto(booking1));
-            var created2 = await manage.Create(new PostBookingDto(booking2));
-            var created3 = await manage.Create(new PostBookingDto(booking3));
+            var post = BookingFixture.GetValidPostBooking();
 
-            var update1 = BookingFixture.GetValidPutBooking(created1.Id);
-            var update2 = BookingFixture.GetValidPutBooking(created2.Id);
-            var update3 = BookingFixture.GetValidPutBooking(created3.Id);
+            var created = await manage.Create(post);
 
-            await manage.Update(update1);
-            await manage.Update(update2);
-            await manage.Update(update3);
+            var update = BookingFixture.GetValidPutBooking(created.Id);
 
-            var updated1 = await manage.Read(created1.Id);
-            var updated2 = await manage.Read(created2.Id);
-            var updated3 = await manage.Read(created3.Id);
+            await manage.Update(update);
+
+            var updated = await manage.Read(created.Id);
 
             Assert.Multiple(() =>
             {
-                Assert.That(updated1, Is.Not.Null);
-                Assert.That(updated2, Is.Not.Null);
-                Assert.That(updated3, Is.Not.Null);
-                Assert.That(updated1.Id, Is.EqualTo(created1.Id));
-                Assert.That(updated2.Id, Is.EqualTo(created2.Id));
-                Assert.That(updated3.Id, Is.EqualTo(created3.Id));
-                Assert.That(updated1.Start, Is.Not.EqualTo(created1.Start));
-                Assert.That(updated2.Start, Is.Not.EqualTo(created2.Start));
-                Assert.That(updated3.Start, Is.Not.EqualTo(created3.Start));
+                Assert.That(updated, Is.Not.Null);
+                Assert.That(updated.Id, Is.EqualTo(created.Id));
+                Assert.That(updated.Start, Is.Not.EqualTo(created.Start));
+                Assert.That(updated.Room.Id, Is.EqualTo(created.Room.Id));
+                Assert.That(updated.Guest.Id, Is.EqualTo(created.Guest.Id));
             });
         }
 
         [Test]
         public async Task ShouldDeleteBookings()
         {
-            var created1 = await manage.Create(new PostBookingDto(booking1));
-            var created2 = await manage.Create(new PostBookingDto(booking2));
-            var created3 = await manage.Create(new PostBookingDto(booking3));
+            var post = BookingFixture.GetValidPostBooking();
 
-            await manage.Delete(created1.Id);
-            await manage.Delete(created2.Id);
-            await manage.Delete(created3.Id);
+            var created = await manage.Create(post);
 
-            var updated1 = await manage.Read(created1.Id);
-            var updated2 = await manage.Read(created2.Id);
-            var updated3 = await manage.Read(created3.Id);
+            await manage.Delete(created.Id);
+
+            var response = await manage.Read(created.Id);
 
             Assert.Multiple(() =>
             {
-                Assert.That(updated1, Is.Null);
-                Assert.That(updated2, Is.Null);
-                Assert.That(updated3, Is.Null);
+                Assert.That(response, Is.Null);
             });
         }
 
@@ -150,7 +137,7 @@ namespace HotelBookingTest.Tests
         [Test]
         public async Task ShouldNotReadByInvalidIdBookings()
         {
-            var response = await manage.Read(1);
+            var response = await manage.Read(Fixture.GetId());
 
             Assert.That(response, Is.Null);
         }

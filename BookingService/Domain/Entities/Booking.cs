@@ -9,8 +9,8 @@ namespace Domain.Entities
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public BookingStatus Status { get; private set; } = BookingStatus.Created;
-        public Room Room { get; set; }
-        public Guest Guest { get; set; }
+        public long RoomId { get; set; }
+        public long GuestId { get; set; }
 
         public Booking()
         {
@@ -21,25 +21,25 @@ namespace Domain.Entities
             Id = id;
         }
 
-        public Booking(DateTime placeAt, DateTime start, DateTime end, BookingStatus status, Room room, Guest guest)
+        public Booking(DateTime placeAt, DateTime start, DateTime end, BookingStatus status, long roomId, long guestId)
         {
             PlaceAt = placeAt;
             Start = start;
             End = end;
             Status = status;
-            Room = room;
-            Guest = guest;
+            RoomId = roomId;
+            GuestId = guestId;
         }
 
-        public Booking(long id, DateTime placeAt, DateTime start, DateTime end, BookingStatus status, Room room, Guest guest)
+        public Booking(long id, DateTime placeAt, DateTime start, DateTime end, BookingStatus status, long roomId, long guestId)
         {
             Id = id;
             PlaceAt = placeAt;
             Start = start;
             End = end;
             Status = status;
-            Room = room;
-            Guest = guest;
+            RoomId = roomId;
+            GuestId = guestId;
         }
 
         public void ChangeStatus(BookingAction action)

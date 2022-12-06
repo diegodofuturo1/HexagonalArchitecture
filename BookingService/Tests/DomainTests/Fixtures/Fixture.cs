@@ -7,7 +7,7 @@ namespace HotelBookingTest.Fixtures
     {
         public static long GetId()
         {
-            return new Randomizer().Long(1, 1000);
+            return new Randomizer().Long(2, 1000);
         }
 
         public static int GetNumber(int min = 1, int max = 999)

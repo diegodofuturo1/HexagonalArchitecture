@@ -65,5 +65,10 @@ namespace SqlAdapter.Repositories
                 : await BuildQuery(expression).ToListAsync();
 
         private IQueryable<T> BuildQuery(Expression<Func<T, bool>> expression) => context.Set<T>().Where(expression);
+
+        public async Task<bool> Exists(long id)
+        {
+            return await Task.FromResult(context.Set<T>().Any(x => x.Id == id));
+        }
     }
 }

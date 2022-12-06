@@ -51,15 +51,15 @@ namespace Application.Bookings.Dtos
             Start = booking.Start;
             End = booking.End;
             Status = booking.Status;
-            RoomId = booking.Room.Id;
-            GuestId = booking.Guest.Id;
+            RoomId = booking.RoomId;
+            GuestId = booking.GuestId;
 
             return this;
         }
 
         public Booking ToEntity()
         {
-            return new Booking(Id, PlaceAt, Start, End, Status, new Room(RoomId), new Guest(GuestId));
+            return new Booking(Id, PlaceAt, Start, End, Status, RoomId, GuestId);
         }
 
         public static List<PutBookingDto> ToList(IEnumerable<Booking> bookings)

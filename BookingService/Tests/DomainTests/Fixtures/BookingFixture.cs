@@ -22,7 +22,7 @@ namespace HotelBookingTest.Fixtures
     {
         public static Booking GetValidBooking(long id = 0)
         {
-            return new Booking(id > 0 ? id : GetId(), DateTime.UtcNow, DateTime.UtcNow.AddDays(3), DateTime.UtcNow.AddDays(10), BookingStatus.Created, new Room(GetId()), new Guest(GetId())) ;
+            return new Booking(id > 0 ? id : GetId(), DateTime.UtcNow, DateTime.UtcNow.AddDays(3), DateTime.UtcNow.AddDays(10), BookingStatus.Created, 1, 1);
         }
 
         public static PostBookingDto GetValidPostBooking()
@@ -58,22 +58,22 @@ namespace HotelBookingTest.Fixtures
                     room = null;
                     break;
                 case InvalidBooking.NullRoom:
-                    room.Room = null;
+                    room.RoomId = 0;
                     break;
                 case InvalidBooking.NullGuest:
-                    room.Guest = null;
+                    room.GuestId = 0;
                     break;
                 case InvalidBooking.InvalidRoom:
-                    room.Room.Id = GetNumber(-1000, 0);
+                    room.RoomId = GetNumber(-1000, 0);
                     break;
                 case InvalidBooking.InvalidGuest:
-                    room.Room.Id = GetNumber(-1000, 0);
+                    room.RoomId = GetNumber(-1000, 0);
                     break;
                 case InvalidBooking.EmptyRoom:
-                    room.Room.Id = 0;
+                    room.RoomId = 0;
                     break;
                 case InvalidBooking.EmptyGuest:
-                    room.Room.Id = 0;
+                    room.RoomId = 0;
                     break;
                 default:
                     break;

@@ -10,33 +10,33 @@ namespace Application.Bookings.Dtos
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public BookingStatus Status { get; private set; } = BookingStatus.Created;
-        public long RoomId { get; set; }
-        public long GuestId { get; set; }
+        public Room Room { get; set; }
+        public Guest Guest { get; set; }
 
         public BookingDto()
         {
 
         }
 
-        public BookingDto(DateTime placeAt, DateTime start, DateTime end, BookingStatus status, long roomId, long guestId)
+        public BookingDto(DateTime placeAt, DateTime start, DateTime end, BookingStatus status, Room room, Guest guest)
         {
             PlaceAt = placeAt;
             Start = start;
             End = end;
             Status = status;
-            RoomId = roomId;
-            GuestId = guestId;
+            Room = room;
+            Guest = guest;
         }
 
-        public BookingDto(long id, DateTime placeAt, DateTime start, DateTime end, BookingStatus status, long roomId, long guestId)
+        public BookingDto(long id, DateTime placeAt, DateTime start, DateTime end, BookingStatus status, Room room, Guest guest)
         {
             Id = id;
             PlaceAt = placeAt;
             Start = start;
             End = end;
             Status = status;
-            RoomId = roomId;
-            GuestId = guestId;
+            Room = room;
+            Guest = guest;
         }
 
         public BookingDto(Booking booking)
@@ -54,14 +54,14 @@ namespace Application.Bookings.Dtos
             Start = booking.Start;
             End = booking.End;
             Status = booking.Status;
-            RoomId= booking.Room.Id;
-            GuestId = booking.Guest.Id;
+            Room = new Room(booking.RoomId);
+            Guest = new Guest(booking.GuestId);
 
             return this;
         }
 
         public Booking ToEntity() {
-            return new Booking(Id, PlaceAt, Start, End, Status, new Room(RoomId), new Guest(GuestId)); 
+            return new Booking(Id, PlaceAt, Start, End, Status, Room.Id, Guest.Id); 
         }
 
         public static List<BookingDto> ToList(IEnumerable<Booking> bookings)

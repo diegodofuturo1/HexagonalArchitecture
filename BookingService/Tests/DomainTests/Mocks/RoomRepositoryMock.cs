@@ -1,19 +1,14 @@
-﻿using Domain.Entities;
-using Domain.Ports;
-using System.Linq.Expressions;
+﻿using Domain.Ports;
+using Domain.Entities;
+using HotelBookingTest.Fixtures;
 
 namespace HotelBookingTest.Mocks
 {
     internal class RoomRepositoryMock : RepositoryMock<Room>, IRoomRepository
     {
-        public Task<IEnumerable<Room>> Search(Expression<Func<Room, bool>> expression, bool asNoTracking = true)
+        public RoomRepositoryMock()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Room> Select(Expression<Func<Room, bool>> expression, bool asNoTracking = true)
-        {
-            throw new NotImplementedException();
+            entitys.Add(RoomFixture.GetValidRoom(1));
         }
     }
 }
